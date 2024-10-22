@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function ListarBanda() {
+function ListarBiblioteca() {
 
   const [lista, setLista] = useState([])
 
@@ -10,14 +10,14 @@ function ListarBanda() {
 
   function load() {
 
-    fetch('http://localhost:8080/api/v1/banda', {
+    fetch('http://localhost:8080/api/v1/biblioteca', {
       method: 'GET'
     }).then(response => {
       return response.json()
     }).then(data => {
       setLista(data.content)
     }).catch(response => {
-      alert('Erro no cadastro da banda')
+      alert('Erro no cadastro da biblioteca')
     })
 
   }
@@ -31,12 +31,12 @@ function ListarBanda() {
           <td>País</td>
           <td>Ano Formação</td>
         </tr>
-        {lista.map((banda, index) => {
+        {lista.map((biblioteca, index) => {
 
           return <tr>
-            <td>{banda.nome}</td>
-            <td>{banda.pais}</td>
-            <td>{banda.anoFormacao}</td>
+            <td>{biblioteca.nome}</td>
+            <td>{biblioteca.pais}</td>
+            <td>{biblioteca.anoFormacao}</td>
           </tr>
 
         })}
@@ -48,4 +48,4 @@ function ListarBanda() {
   )
 }
 
-export default ListarBanda
+export default ListarBiblioteca
