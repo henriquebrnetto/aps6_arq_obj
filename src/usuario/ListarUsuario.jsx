@@ -10,7 +10,7 @@ function ListarUsuario() {
 
   function load() {
 
-    fetch('http://localhost:8080/api/v1/usuario', {
+    fetch('http://localhost:8080/usuario', {
       method: 'GET'
     }).then(response => {
       return response.json()
@@ -24,19 +24,26 @@ function ListarUsuario() {
 
   return (
     <>
+
+      <IconButton>
+        <Link to='/'><HomeIcon /></Link>
+      </IconButton>
+      
       <br/>
       <table>
         <tr>
           <td>Nome</td>
-          <td>País</td>
-          <td>Ano Formação</td>
+          <td>Endereço</td>
+          <td>E-mail</td>
+          <td>Biblioteca</td>
         </tr>
         {lista.map((usuario, index) => {
 
           return <tr>
             <td>{usuario.nome}</td>
-            <td>{usuario.pais}</td>
-            <td>{usuario.anoFormacao}</td>
+            <td>{usuario.endereco}</td>
+            <td>{usuario.email}</td>
+            <td>{usuario.biblioteca}</td>
           </tr>
 
         })}

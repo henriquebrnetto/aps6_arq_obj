@@ -10,7 +10,7 @@ function ListarBiblioteca() {
 
   function load() {
 
-    fetch('http://localhost:8080/api/v1/biblioteca', {
+    fetch('http://localhost:8080/biblioteca', {
       method: 'GET'
     }).then(response => {
       return response.json()
@@ -24,19 +24,22 @@ function ListarBiblioteca() {
 
   return (
     <>
+
+      <IconButton>
+        <Link to='/'><HomeIcon /></Link>
+      </IconButton>
+      
       <br/>
       <table>
         <tr>
           <td>Nome</td>
           <td>País</td>
-          <td>Ano Formação</td>
         </tr>
         {lista.map((biblioteca, index) => {
 
           return <tr>
             <td>{biblioteca.nome}</td>
-            <td>{biblioteca.pais}</td>
-            <td>{biblioteca.anoFormacao}</td>
+            <td>{biblioteca.endereco}</td>
           </tr>
 
         })}

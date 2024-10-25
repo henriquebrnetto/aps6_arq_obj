@@ -1,27 +1,25 @@
 import { useState } from 'react'
-import { Button, Grid, MenuItem, Select, TextField } from '@mui/material';
+import { Button, Grid2, MenuItem, Select, TextField } from '@mui/material';
 
 function CadastrarUsuario() {
 
   const [nome, setNome] = useState();
-  const [pais, setPais] = useState();
-  const [anoFormacao, setAnoFormacao] = useState();
-  const [idUsuario, setIdUsuario] = useState();
+  const [endereco, setEndereco] = useState();
+  const [email, setEmail] = useState();
+  const [biblioteca, setBiblioteca] = useState();
 
   function click() {
 
     const data = {
       'nome':  nome,
-      'pais': pais,
-      'anoFormacao': anoFormacao,
-      'usuario': {
-        'id': idUsuario
-      }
+      'endereco': endereco,
+      'email': email,
+      'biblioteca': biblioteca
     }
 
     console.log(data)
 
-    fetch('http://localhost:8080/api/v1/usuario', {
+    fetch('http://localhost:8080/usuario', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -38,47 +36,48 @@ function CadastrarUsuario() {
   return (
     <>
 
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <IconButton>
+        <Link to='/'><HomeIcon /></Link>
+      </IconButton>
+    <Grid2 container spacing={2}>
+      <Grid2 item xs={6}>
         <TextField
           label='Nome: '
           value={nome}
           onChange={e => setNome(e.target.value)}
         />
-      </Grid>
-      <Grid item xs={6}>
+      </Grid2>
+      <Grid2 item xs={6}>
         <TextField
-          label='País: '
-          value={pais}
-          onChange={e => setPais(e.target.value)}
+          label='Endereço: '
+          value={endereco}
+          onChange={e => setEndereco(e.target.value)}
         />
-      </Grid>
-      <Grid item xs={6}>
+      </Grid2>
+      <Grid2 item xs={6}>
         <TextField
-          label='Ano Formação: '
-          value={anoFormacao}
-          onChange={e => setAnoFormacao(e.target.value)}
+          label='Email: '
+          value={email}
+          onChange={e => setEmail(e.target.value)}
         />
-      </Grid>
-      <Grid item xs={12}>
+      </Grid2>
+      <Grid2 item xs={12}>
         <Select
-          label='Ano Formação: '
-          value={idUsuario}
-          onChange={e => setIdUsuario(e.target.value)}>
-          <MenuItem value='id1'>Usuario 1</MenuItem>
-          <MenuItem value='id2'>Usuario 2</MenuItem>
-          <MenuItem value='id3'>Usuario 3</MenuItem>
+          label='Biblioteca: '
+          value={biblioteca}
+          onChange={e => setBiblioteca(e.target.value)}>
+          <MenuItem value='b1'>Biblioteca 1</MenuItem>
         </Select>
-      </Grid>
-      <Grid item xs={12}>
+      </Grid2>
+      <Grid2 item xs={12}>
         <Button 
           onClick={() => click()}
           variant="contained"
           color="success"
         >Cadastrar</Button>
-        </Grid>
+        </Grid2>
 
-      </Grid>
+      </Grid2>
     </>
   )
 }

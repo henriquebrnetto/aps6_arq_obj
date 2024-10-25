@@ -1,27 +1,21 @@
 import { useState } from 'react'
-import { Button, Grid, MenuItem, Select, TextField } from '@mui/material';
+import { Button, Grid2, MenuItem, Select, TextField } from '@mui/material';
 
 function CadastrarBiblioteca() {
 
   const [nome, setNome] = useState();
-  const [pais, setPais] = useState();
-  const [anoFormacao, setAnoFormacao] = useState();
-  const [idBiblioteca, setIdBiblioteca] = useState();
+  const [endereco, setEndereco] = useState();
 
   function click() {
 
     const data = {
       'nome':  nome,
-      'pais': pais,
-      'anoFormacao': anoFormacao,
-      'biblioteca': {
-        'id': idBiblioteca
-      }
+      'endereco': endereco
     }
 
     console.log(data)
 
-    fetch('http://localhost:8080/api/v1/biblioteca', {
+    fetch('http://localhost:8080/biblioteca', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -37,48 +31,36 @@ function CadastrarBiblioteca() {
 
   return (
     <>
+    
+    <IconButton>
+      <Link to='/'><HomeIcon /></Link>
+    </IconButton>
 
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
+    <Grid2 container spacing={2}>
+      <Grid2 item xs={6}>
         <TextField
           label='Nome: '
           value={nome}
           onChange={e => setNome(e.target.value)}
         />
-      </Grid>
-      <Grid item xs={6}>
+      </Grid2>
+      <Grid2 item xs={6}>
         <TextField
-          label='País: '
-          value={pais}
-          onChange={e => setPais(e.target.value)}
+          label='Endereço: '
+          value={endereco}
+          onChange={e => setEndereco(e.target.value)}
         />
-      </Grid>
-      <Grid item xs={6}>
-        <TextField
-          label='Ano Formação: '
-          value={anoFormacao}
-          onChange={e => setAnoFormacao(e.target.value)}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Select
-          label='Ano Formação: '
-          value={idBiblioteca}
-          onChange={e => setIdBiblioteca(e.target.value)}>
-          <MenuItem value='id1'>Biblioteca 1</MenuItem>
-          <MenuItem value='id2'>Biblioteca 2</MenuItem>
-          <MenuItem value='id3'>Biblioteca 3</MenuItem>
-        </Select>
-      </Grid>
-      <Grid item xs={12}>
+      </Grid2>
+      
+      <Grid2 item xs={12}>
         <Button 
           onClick={() => click()}
           variant="contained"
           color="success"
         >Cadastrar</Button>
-        </Grid>
+        </Grid2>
 
-      </Grid>
+      </Grid2>
     </>
   )
 }
